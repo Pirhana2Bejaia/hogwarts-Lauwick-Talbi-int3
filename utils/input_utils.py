@@ -9,7 +9,8 @@ def load_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         '''le r correspond a read et le encoding='utf-8' fait que ça accepte les accent et caratère spéciaux '''
         data = json.load(f)
-    '''# Exemple fictif d'utilisation dans chapter_1.py
+    return data
+    ''' Exemple fictif d'utilisation dans chapter_1.py
 from utils.input_utils import load_file
 
 # On charge le fichier situé dans le dossier data
@@ -17,4 +18,4 @@ inventory_data = load_file("data/inventory.json")
 
 # inventory_data sera maintenant une liste ou un dictionnaire exploitable
 print(inventory_data)'''
-    return data
+
