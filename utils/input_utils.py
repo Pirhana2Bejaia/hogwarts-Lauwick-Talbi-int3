@@ -1,10 +1,3 @@
-'''
-la première condition vérifie que l'input n'est pas vide
-si elle n'est pas vide:
-on vérifie que le message ne contient pas que des espaces blancs
-'''
-
-
 def ask_text(message):
 
     ask = input(message)
@@ -25,15 +18,16 @@ def ask_text(message):
 
 def ask_choice(message,options):
     min = 1
-    max = len(option)
+    max = len(options)
     print(message)
     print()
     for i in range(len(options)):
-        print(i+1,option[i])
+        print(i+1,options[i])
     return ask_number(message,min,max)
 
 
 def ask_number(message, min_val=None, max_val=None):
+    negative = 'false'
     check = 'ok'
     answer = input(message)
 
@@ -97,3 +91,17 @@ def ask_number(message, min_val=None, max_val=None):
 
 
 print(ask_number('votre age : ', -15, 15))
+def load_file(file_path):
+    import json
+    with open(file_path, 'r', encoding='utf-8') as f:
+        '''le r correspond a read et le encoding='utf-8' fait que ça accepte les accent et caratère spéciaux '''
+        data = json.load(f)
+    '''# Exemple fictif d'utilisation dans chapter_1.py
+from utils.input_utils import load_file
+
+On charge le fichier situé dans le dossier data
+inventory_data = load_file("data/inventory.json")
+
+inventory_data sera maintenant une liste ou un dictionnaire exploitable
+print(inventory_data)'''
+    return data
