@@ -96,4 +96,3 @@ def ask_number(message, min_val=None, max_val=None):
     return answer
 
 
-print(ask_number('votre age : ', -15, 15))
