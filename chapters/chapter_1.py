@@ -34,7 +34,7 @@ def introduction():
 
     input(welcome_screen)
 
-
+introduction()
 
 def create_character():
     last_name = ask_text("Enter your character's last name:")
@@ -44,13 +44,14 @@ def create_character():
 
     atributes = {}
 
-    atributes["Courage"] = ask_choice("Choose your courage level (1-10): ", 1, 10)
-    atributes["Intelligence"] = ask_choice("Choose your courage level (1-10): ", 1, 10)
-    atributes["Loyalty"] = ask_choice("Choose your loyalty level (1-10): ", 1, 10)
-    atributes["Ambition"] = ask_choice("Choose your loyalty level (1-10): ", 1, 10)
+    atributes["Courage"] = ask_number("Choose your courage level (1-10): ", 1, 10)
+    atributes["Intelligence"] = ask_number("Choose your courage level (1-10): ", 1, 10)
+    atributes["Loyalty"] = ask_number("Choose your loyalty level (1-10): ", 1, 10)
+    atributes["Ambition"] = ask_number("Choose your loyalty level (1-10): ", 1, 10)
 
     character = init_character(last_name, first_name, atributes)
 
+
     return display_character(character)
 
-introduction()
+create_character()

@@ -21,19 +21,20 @@ def ask_text(message):
         if checker != "check":
             return ask_text(message)
         else:
-            return '✅'
+            return ask
 
 def ask_choice(message,options):
     min = 1
-    max = len(option)
+    max = len(options)
     print(message)
     print()
     for i in range(len(options)):
-        print(i+1,option[i])
+        print(i+1,options[i])
     return ask_number(message,min,max)
 
 
 def ask_number(message, min_val=None, max_val=None):
+    negative = 'false'
     check = 'ok'
     answer = input(message)
 
@@ -96,4 +97,3 @@ def ask_number(message, min_val=None, max_val=None):
     return answer
 
 
-print(ask_number('votre age : ', -15, 15))
