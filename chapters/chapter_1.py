@@ -37,7 +37,7 @@ def introduction():
 
     input(welcome_screen)
 
-introduction()
+#introduction()
 
 def create_character():
     last_name = ask_text("Enter your character's last name:")
@@ -126,7 +126,7 @@ def receive_letter():
 
     return ''
 
-receive_letter()
+#receive_letter()
 
 def meet_hagrid():
     first_name = player_tab["First Name"]
@@ -153,7 +153,7 @@ def meet_hagrid():
     print()
 
 
-meet_hagrid()
+#meet_hagrid()
 
 def buy_supplies():
     file = load_file("../data/inventory.json")
