@@ -150,6 +150,7 @@ def meet_hagrid():
 
     print()
     input("[ Press ENTER to continue]")
+    print()
 
 
 meet_hagrid()
@@ -157,9 +158,54 @@ meet_hagrid()
 def buy_supplies():
     file = load_file("../data/inventory.json")
     money = player_tab["Money"]
+    store = []
     for i in file:
-        print(i)
+        store.append(file[i])
+
+    print('you have', money, ' $')
     print()
-    print('c la hess', money, ' $')
+    input("[ Press ENTER to continue]")
+    print()
+
+    tentative = 3
+
+    twins = []
+
+
+    while tentative > 0:
+
+        a = ask_choice('you must buy the three essential items: Magic wand, Wizard robe, and Potions book.',store)
+
+        if a == 8 or a == 3 or a == 5 or a == 6 or a == 7 or a in twins:
+            prohibited = """
+            Haggrid :
+                You should'nt buy this item you will not have enough money to buy the three essential items
+            """
+            print(prohibited)
+
+        else:
+            player_tab["Inventory"].append(store[a][0])
+            tentative -= 1
+            twins.append(a)
+
+    return print(player_tab["Inventory"])
+
+
+
 
 buy_supplies()
+
+"""
+This function allows to buy the required school supplies on Diagon Alley. The complete catalog is
+loaded from the data/inventory.json file. The player must buy the three essential items: Magic
+wand, Wizard robe, and Potions book.
+Once these purchases have been made, the player must choose a pet from among the authorized
+species:
+• Owl - 20 galleons
+• Cat - 15 galleons
+• Rat - 10 galleons
+• Toad - 5 galleons
+Please note: The budget is checked before each purchase. If the player does not have enough
+money or forgets a mandatory item, they lose the game.
+Finally, the function displays the character's final inventory.
+"""
