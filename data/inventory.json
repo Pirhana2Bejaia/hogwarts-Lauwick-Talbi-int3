@@ -1,14 +1,10 @@
 {
-  "name": "data",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Pirhana2Bejaia/hogwarts-Lauwick-Talbi-int3.git"
-  },
-  "private": true
+    "1": ["Magic Wand", 35],
+    "2": ["Wizard Robe", 20],
+    "3": ["Tin Cauldron", 15],
+    "4": ["Potions Book", 25],
+    "5": ["Magic Quill", 5],
+    "6": ["Enchanted Book", 30],
+    "7": ["Copper Scale", 10],
+    "8": ["Invisibility Cloak", 100]
 }

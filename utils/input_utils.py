@@ -4,6 +4,11 @@ si elle n'est pas vide:
 on vérifie que le message ne contient pas que des espaces blancs
 '''
 
+def load_file(file_path):
+    import json
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data
 
 def ask_text(message):
 
@@ -30,6 +35,7 @@ def ask_choice(message,options):
     print()
     for i in range(len(options)):
         print(i+1,options[i])
+        print()
     return ask_number(message,min,max)
 
 
