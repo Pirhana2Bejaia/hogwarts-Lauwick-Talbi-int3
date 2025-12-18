@@ -41,3 +41,38 @@ def display_winning_house(houses):
     else:
         print("The winner is", house_winning, "with a number of ", max_points, "points.")
     return
+def assign_house(character, questions):
+    """
+    The function assign houses by the answer of the questions
+    :param character: dict
+    :param questions: list of tuple
+    :return:
+    """
+    houses = {"Gryffindor": 0,
+            "Slytherin": 0,
+            "Hufflepuff": 0,
+            "Ravenclaw": 0,
+            }
+
+    for i in character["Attributes"].keys():
+        if i == "Courage":
+            update_house_point(houses, "Gryffindor", 2*character["Attributes"][i])
+        elif i == "Ambition":
+            update_house_point(houses, "Slytherin", 2*character["Attributes"][i])
+        elif i == "Loyalty":
+            update_house_point(houses, "Hufflepuff", 2*character["Attributes"][i])
+        elif i == "Intelligence":
+            update_house_point(houses, "Ravenclaw", 2*character["Attributes"][i])
+
+    for question in questions:
+        a = input_utils.ask_choice(question[0],question[1])
+        update_house_point(houses, question[2][a-1], 3)
+
+    print("Summary of scores:")
+    max_point = 0
+    name_house = ""
+    for name in houses.keys():
+        print(f'{name}: {houses[name]} points')
+        if houses[name] > max_point:
+            name_house = name
+    return name_house
