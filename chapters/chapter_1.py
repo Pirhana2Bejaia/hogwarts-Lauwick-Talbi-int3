@@ -37,7 +37,6 @@ def introduction():
 
     input(welcome_screen)
 
-#introduction()
 
 def create_character():
     last_name = ask_text("Enter your character's last name:")
@@ -63,7 +62,6 @@ def create_character():
 
     return character
 
-player_tab = create_character()
 
 def receive_letter():
 
@@ -126,7 +124,7 @@ def receive_letter():
 
     return ''
 
-#receive_letter()
+
 
 def meet_hagrid():
     first_name = player_tab["First Name"]
@@ -153,59 +151,156 @@ def meet_hagrid():
     print()
 
 
-#meet_hagrid()
-
-def buy_supplies():
-    file = load_file("../data/inventory.json")
-    money = player_tab["Money"]
-    store = []
-    for i in file:
-        store.append(file[i])
-
-    print('you have', money, ' $')
-    print()
-    input("[ Press ENTER to continue]")
-    print()
-
-    tentative = 3
-
-    twins = []
 
 
-    while tentative > 0:
 
-        a = ask_choice('you must buy the three essential items: Magic wand, Wizard robe, and Potions book.',store)
 
-        if a == 8 or a == 3 or a == 5 or a == 6 or a == 7 or a in twins:
-            prohibited = """
-            Haggrid :
-                You should'nt buy this item you will not have enough money to buy the three essential items
-            """
-            print(prohibited)
 
+def buy_supplies(character):
+    """
+    Manages the purchase of supplies on Diagon Alley.
+    The player must buy mandatory items and choose a pet.
+    """
+    # Dictionnaire fourni dans ta consigne (normalement chargé via load_file)
+
+    #test = load_file("data/inventory")
+
+
+    inventory_data = {
+        "1": ["Magic Wand", 35],
+        "2": ["Wizard Robe", 20],
+        "3": ["Tin Cauldron", 15],
+        "4": ["Potions Book", 25],
+        "5": ["Magic Quill", 5],
+        "6": ["Enchanted Book", 30],
+        "7": ["Copper Scale", 10],
+        "8": ["Invisibility Cloak", 100]
+    }
+
+    mandatory_items = ["Magic Wand", "Wizard Robe", "Potions Book"]
+
+    print("\nWelcome to Diagon Alley!")  # [cite: 443]
+
+    # BOUCLE D'ACHAT DES FOURNITURES
+    # On continue tant qu'il reste des objets obligatoires à acheter
+    while len(mandatory_items) > 0:
+        print("\nCatalog of available items:")  # [cite: 444]
+
+        # Affichage du catalogue
+        # On parcourt les clés "1", "2", etc.
+        # Le sujet demande d'afficher "(required)" à côté des objets obligatoires [cite: 450, 453]
+        for key in inventory_data:
+            item_name = inventory_data[key][0]
+            item_price = inventory_data[key][1]
+
+            display_text = key + ". " + item_name + " " + str(item_price) + " Galleons"
+
+            # Vérification si l'objet est dans la liste des obligatoires
+            is_required = False
+            for req in mandatory_items:
+                if req == item_name:
+                    is_required = True
+
+            if is_required:
+                display_text += " (required)"
+
+            print(display_text)
+
+        # Affichage de l'argent et des objets manquants [cite: 459, 460]
+        current_money = character['Money']
+        print("\nYou have " + str(current_money) + " Galleons.")
+        print("Remaining required items: " + ", ".join(mandatory_items))
+
+        # Demande de choix (Source 461)
+        choice = str(ask_number("Enter the number of the item to buy: ", 1, 8))
+
+        # Récupération des infos de l'objet choisi
+        selected_item = inventory_data[choice]
+        name = selected_item[0]
+        price = selected_item[1]
+
+        # Vérification du budget
+        if current_money >= price:
+            # Achat validé
+            modify_money(character, -price)  # Débit du compte [cite: 273]
+            add_item(character, 'Inventory', name)  # Ajout à l'inventaire [cite: 276]
+            print("You bought: " + name + " (-" + str(price) + " Galleons).")  # [cite: 462]
+
+            # Si c'était un objet obligatoire, on le retire de la liste des tâches
+            # On ne peut pas utiliser .remove() directement sans vérifier s'il est dedans
+            if name in mandatory_items:
+                mandatory_items.remove(name)
         else:
-            player_tab["Inventory"].append(store[a][0])
-            tentative -= 1
-            twins.append(a)
+            # GAME OVER si le joueur ne peut pas payer un objet (Source 439-440)
+            print("You don't have enough money for " + name + "!")
+            print("Without your school supplies, you are expelled from Hogwarts before even starting.")
+            print("Game Over.")
+            exit()  # Arrêt immédiat du programme [cite: 409]
 
-    return print(player_tab["Inventory"])
+    print("\nAll required items have been purchased!")  # [cite: 468]
+
+    # CHOIX DE L'ANIMAL DE COMPAGNIE
+    print("It's time to choose your Hogwarts pet!")  # [cite: 469]
+    print("You have " + str(character['Money']) + " Galleons.")  # [cite: 470]
+
+    # Liste des animaux et prix imposés par le sujet [cite: 435-438]
+    pets = [
+        ["Owl", 20],
+        ["Cat", 15],
+        ["Rat", 10],
+        ["Toad", 5]
+    ]
+
+    print("Available pets:")  # [cite: 471]
+    for i in range(len(pets)):
+        print(str(i + 1) + ". " + pets[i][0] + " " + str(pets[i][1]) + " Galleons")
+
+    # Boucle pour forcer un achat valide d'animal
+    pet_bought = False
+    while not pet_bought:
+        pet_choice = ask_number("Which pet do you want? ", 1, 4)  # [cite: 478]
+
+        # -1 car l'utilisateur entre 1-4 mais la liste commence à 0
+        selected_pet = pets[pet_choice - 1]
+        pet_name = selected_pet[0]
+        pet_price = selected_pet[1]
+
+        if character['Money'] >= pet_price:
+            modify_money(character, -pet_price)
+            add_item(character, 'Inventory', pet_name)
+            print("You chose: " + pet_name + " (-" + str(pet_price) + " Galleons).")  # [cite: 484]
+            pet_bought = True
+        else:
+            print("You don't have enough money for a " + pet_name + ". Choose another one.")
+            # Note : Si le joueur n'a même plus 5 gallions pour le crapaud,
+            # il est bloqué, ce qui correspond à un échec du jeu.
+            if character['Money'] < 5:
+                print("You can't afford any pet! Game Over.")
+                exit()
+
+    print("\nAll required items have been successfully purchased! Here is your final inventory:")  # [cite: 485]
+
+    # Affichage final du personnage via la fonction demandée [cite: 253, 441]
+    # display_character(character)
+    # (J'ai commenté l'appel car je ne sais pas si tu as déjà importé cette fonction, mais c'est requis)
 
 
 
+def start_chapter_1():
 
-buy_supplies()
+    global player_tab
 
-"""
-This function allows to buy the required school supplies on Diagon Alley. The complete catalog is
-loaded from the data/inventory.json file. The player must buy the three essential items: Magic
-wand, Wizard robe, and Potions book.
-Once these purchases have been made, the player must choose a pet from among the authorized
-species:
-• Owl - 20 galleons
-• Cat - 15 galleons
-• Rat - 10 galleons
-• Toad - 5 galleons
-Please note: The budget is checked before each purchase. If the player does not have enough
-money or forgets a mandatory item, they lose the game.
-Finally, the function displays the character's final inventory.
-"""
+    introduction()
+    player_tab = create_character()
+    receive_letter()
+    meet_hagrid()
+    buy_supplies(player_tab)
+
+    print("\n" + "~" * 40)
+    print("End of Chapter 1! Your adventure begins at Hogwarts...")
+    print("~" * 40)
+    input("[ Press ENTER to continue to Chapter 2 ]")
+
+    return player_tab
+
+start_chapter_1()

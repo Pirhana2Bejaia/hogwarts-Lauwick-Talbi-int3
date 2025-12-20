@@ -129,4 +129,3 @@ def start_chapter_2(character):
     print("End of Chapter 2! Your adventure begins at Hogwarts...")
     print("Classes are about to start.")
     input("[Press Enter to continue]")
-    return house, character
