@@ -29,14 +29,13 @@ def ask_text(message):
             return ask
 
 def ask_choice(message,options):
-    min = 1
-    max = len(options)
-    print(message)
     print()
     for i in range(len(options)):
-        print(i+1,options[i])
+        print(i+1,'. ',options[i])
         print()
-    return ask_number(message,min,max)
+    answer = ask_number(message,1,len(options))
+    return answer
+
 
 
 def ask_number(message, min_val=None, max_val=None):

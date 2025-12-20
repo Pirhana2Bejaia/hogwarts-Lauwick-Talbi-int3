@@ -119,7 +119,8 @@ def enter_common_room(character):
     input("[Press Enter to settle into your new dormitory]")
 
 
-def start_chapter_2(character):
+def start_chapter_2(character): # je crois que dans chap 2 il faut lancer chap 1 qui return character
+    #
     meet_friends(character)
     welcome_message()
     sorting_ceremony(character)
@@ -129,3 +130,5 @@ def start_chapter_2(character):
     print("End of Chapter 2! Your adventure begins at Hogwarts...")
     print("Classes are about to start.")
     input("[Press Enter to continue]")
+
+start_chapter_2(character)
