@@ -1,3 +1,4 @@
+from chapters.chapter_1 import start_chapter_1
 from utils.input_utils import ask_choice
 from universe.house import assign_house
 from utils.input_utils import load_file
@@ -52,15 +53,15 @@ def meet_friends(character):
     a=ask_choice("How do you respond?",[" Shake his hand politely.", " Ignore him completely.", " Respond with arrogance."])
     print("Your choice :", a)
     if a == 1:
-        character["Attributes"][ambition] += 1
+        character["Attributes"]["Ambition"] += 1
         print("Drago smiles: "
               "- Happy to get you as a new friend")
     if a == 2:
-        character["Attributes"][loyalty] += 1
+        character["Attributes"]["Loyalty"] += 1
         print("Draco frowns, annoyed. "
               "— You'll regret that!")
     if a == 3:
-        character["Attributes"][courage] += 1
+        character["Attributes"]["Courage"] += 1
         print("Drago frowns, annoyed. "
               "- You think your intelligent POTTER")
     print("""
@@ -130,5 +131,5 @@ def start_chapter_2(character):
     print("Classes are about to start.")
     input("[Press Enter to continue]")
     return house , character
-    
-    
+character = start_chapter_1()
+start_chapter_2(character)
