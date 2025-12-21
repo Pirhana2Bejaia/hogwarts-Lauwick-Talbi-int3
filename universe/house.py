@@ -1,8 +1,8 @@
+from utils.input_utils import ask_choice
 def update_house_points(houses, house_name, points):
     while house_name != "Gryffindor" and house_name != "Slytherin" and house_name != "Hufflepuff" and house_name != "Ravenclaw":
         house_name = input("Please enter the house's name: ")
     houses[house_name] = houses[house_name] + points
-    print(points, " for ", house_name)
     return
 
 def display_winning_house(houses):
@@ -42,37 +42,31 @@ def display_winning_house(houses):
         print("The winner is", house_winning, "with a number of ", max_points, "points.")
     return
 def assign_house(character, questions):
-    """
-    The function assign houses by the answer of the questions
-    :param character: dict
-    :param questions: list of tuple
-    :return:
-    """
-    houses = {"Gryffindor": 0,
-            "Slytherin": 0,
-            "Hufflepuff": 0,
-            "Ravenclaw": 0,
-            }
-
-    for i in character["Attributes"].keys():
-        if i == "Courage":
-            update_house_points(houses, "Gryffindor", 2*character["Attributes"][i])
-        elif i == "Ambition":
-            update_house_points(houses, "Slytherin", 2*character["Attributes"][i])
-        elif i == "Loyalty":
-            update_house_points(houses, "Hufflepuff", 2*character["Attributes"][i])
-        elif i == "Intelligence":
-            update_house_points(houses, "Ravenclaw", 2*character["Attributes"][i])
-
+    houses = {
+        "Gryffindor": 0,
+        "Slytherin": 0,
+        "Hufflepuff": 0,
+        "Ravenclaw": 0,
+    }
+    for key in character["Attributes"].keys():
+        attr_name = key.capitalize()
+        if attr_name == "Courage":
+            update_house_points(houses, "Gryffindor", 2 * character["Attributes"][key])
+        elif attr_name == "Ambition":
+            update_house_points(houses, "Slytherin", 2 * character["Attributes"][key])
+        elif attr_name == "Loyalty":
+            update_house_points(houses, "Hufflepuff", 2 * character["Attributes"][key])
+        elif attr_name == "Intelligence":
+            update_house_points(houses, "Ravenclaw", 2 * character["Attributes"][key])
     for question in questions:
-        a = input_utils.ask_choice(question[0],question[1])
-        update_house_points(houses, question[2][a-1], 3)
-
-    print("Summary of scores:")
-    max_point = 0
+        print("\n" + question[0])
+        a = ask_choice("Your answer: ", question[1])
+        update_house_points(houses, question[2][a - 1], 3)
+    max_point = -1
     name_house = ""
     for name in houses.keys():
-        print(f'{name}: {houses[name]} points')
         if houses[name] > max_point:
+            max_point = houses[name]
             name_house = name
+
     return name_house
