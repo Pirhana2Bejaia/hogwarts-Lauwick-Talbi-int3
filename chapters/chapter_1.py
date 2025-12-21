@@ -302,5 +302,3 @@ def start_chapter_1():
     input("[ Press ENTER to continue to Chapter 2 ]")
 
     return player_tab
-
-start_chapter_1()

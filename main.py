@@ -1,6 +1,8 @@
-houses = {
- "Gryffindor": 0,
- "Slytherin": 0,
- "Hufflepuff": 0,
- "Ravenclaw": 0
-}
+from menu import launch_menu_choice
+
+def main():
+    launch_menu_choice()
+
+
+if __name__ == "__main__":
+    main()

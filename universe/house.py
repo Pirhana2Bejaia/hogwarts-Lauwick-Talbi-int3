@@ -56,17 +56,17 @@ def assign_house(character, questions):
 
     for i in character["Attributes"].keys():
         if i == "Courage":
-            update_house_point(houses, "Gryffindor", 2*character["Attributes"][i])
+            update_house_points(houses, "Gryffindor", 2*character["Attributes"][i])
         elif i == "Ambition":
-            update_house_point(houses, "Slytherin", 2*character["Attributes"][i])
+            update_house_points(houses, "Slytherin", 2*character["Attributes"][i])
         elif i == "Loyalty":
-            update_house_point(houses, "Hufflepuff", 2*character["Attributes"][i])
+            update_house_points(houses, "Hufflepuff", 2*character["Attributes"][i])
         elif i == "Intelligence":
-            update_house_point(houses, "Ravenclaw", 2*character["Attributes"][i])
+            update_house_points(houses, "Ravenclaw", 2*character["Attributes"][i])
 
     for question in questions:
         a = input_utils.ask_choice(question[0],question[1])
-        update_house_point(houses, question[2][a-1], 3)
+        update_house_points(houses, question[2][a-1], 3)
 
     print("Summary of scores:")
     max_point = 0
