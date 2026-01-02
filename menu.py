@@ -2,6 +2,7 @@ from utils.input_utils import ask_choice
 from chapters.chapter_1 import start_chapter_1
 from chapters.chapter_2 import start_chapter_2
 from chapters.chapter_3 import start_chapter_3
+from chapters.chapter_4 import start_chapter_4_quidditch
 
 def display_main_menu():
     print(" ⚡ HOGWARTS ADVENTURE ⚡ ")
@@ -20,6 +21,7 @@ def launch_menu_choice():
             character = start_chapter_1()
             character = start_chapter_2(character)
             character = start_chapter_3(character,houses)
+            character = start_chapter_4_quidditch(character, houses)
         elif choice == 2:
             print("Goodbye, young wizard!")
             break
