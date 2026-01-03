@@ -14,7 +14,7 @@ This project implements key programming concepts such as dictionary and list man
 
 Contributors:
 Talbi Mael 
-Adrien Lauwick 
+Adrien Lauwick
 
 ## 2. Installation
 
@@ -94,7 +94,7 @@ The utils/input_utils.py module ensures game stability. The ask_number function 
 
 Known Bugs:
 On some Windows terminals (cmd.exe), emojis may not display correctly due to encoding issues. Using the new Windows Terminal or VS Code is recommended. Although case sensitivity is handled for spells, some specific inputs may require exact typing.
-
+ 
 Testing Strategies:
 Manual tests were performed at each stage. Unit tests verified that the player is correctly added as a Seeker in the team creation function. Limit tests checked scenarios like trying to buy items without money. Integration tests involved a complete playthrough from Chapter 1 to 4 to verify the continuity of character attributes and house scores.
 """
