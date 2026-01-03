@@ -9,7 +9,7 @@ def learn_spells(character, file_path="data/spells.json"):
     print(" CHAPTER 3: MAGIC CLASSES ")
     print("=" * 40)
 
-    print("""
+    print(""" 
 You enter the Charms classroom. Small piles of books are stacked on the desks.
 Professor Flitwick is standing on a pile of books to see the class.
 

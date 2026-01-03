@@ -5,7 +5,7 @@ Hogwart
 
 Project Title: Hogwarts Adventure: The Art of Coding like a Wizard
 
-Brief Description:
+Brief Description:  
 This project is an interactive text-based adventure game developed in Python as part of the TI101I course. It immerses the player in the world of Harry Potter, allowing them to embody a young wizard or witch taking their first steps at Hogwarts.
 
 The game unfolds in four chapters. The first chapter covers the arrival, character creation, and shopping on Diagon Alley. The second chapter covers the journey, meeting iconic characters, and the Sorting Ceremony. The third chapter covers learning magic spells and a knowledge quiz. The fourth chapter covers the conclusion with the Quidditch Cup tournament.
@@ -14,7 +14,7 @@ This project implements key programming concepts such as dictionary and list man
 
 Contributors:
 Talbi Mael 
-Adrien Lauwick
+Adrien Lauwick / 
 
 ## 2. Installation
 
