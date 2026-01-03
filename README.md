@@ -86,7 +86,7 @@ Week 4: Finalization of the Quidditch tournament (chapter_4.py). Global integrat
 Task Distribution:
 mael talbi Responsible for : input_utils.py, chapter_1, chapter_3, character.py
 Adrien Lauwick: Responsible for chapter_3, chapter_4, house.py, common: Debugging, JSON file creation, and integration tests.
-
+ 
 ## 6. Control, Testing, and Validation
 
 Input and Error Management:
