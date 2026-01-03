@@ -4,6 +4,7 @@ from data import *
 
 a = '‍🐦‍🔥🔥🪶🦇🕸️🕰️🦉🪽🧑‍🎓✨💎🗡️🏹🛡️⚔️💸💰🪙♨️⚡💫❌'
 
+
 def introduction():
     welcome_screen = """
 
@@ -64,13 +65,11 @@ def create_character():
 
 
 def receive_letter():
-
-
     last_name = player_tab["Last Name"]
     first_name = player_tab["First Name"]
 
     letter = """
-        
+
     An owl flies through the window, delivering a 
     letter sealed with the Hogwarts crest...
 
@@ -80,7 +79,7 @@ def receive_letter():
     ~               HOWARTS SCHOOL OF               ~
     ~            WITCHCRAFT AND WIZARDERY           ~     
     ~                                               ~
-    ~ Dear """+ last_name+' '+ first_name+ """,                     
+    ~ Dear """ + last_name + ' ' + first_name + """,                     
     ~                                               ~
     ~ We are pleased to inform you that you have a  ~
     ~ place at                                      ~
@@ -99,7 +98,7 @@ def receive_letter():
     ~                                               ~
     ~///////////////////////////////////////////////~ 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
+
                 [ Press ENTER to continue ]
     """
 
@@ -107,7 +106,6 @@ def receive_letter():
 
     answer = ask_choice("Do you accept this invitation and go to Hogwarts ? ",
                         ["Yes, of course!", "No, I'd rather stay with Uncle Vernon..."])
-
 
     if answer == 1:
         print()
@@ -120,10 +118,9 @@ def receive_letter():
         print()
         print("The magical world will never know you existed... Game over.")
 
-        return exit()
+        exit()
 
     return ''
-
 
 
 def meet_hagrid():
@@ -132,15 +129,15 @@ def meet_hagrid():
             The minute you agreed, a flash of lightning dazzles you, and  a bearded        
             giant appeared in front of you.
 
-    Hagrid: Hello ''' +first_name+ ''' sorcere! My name is Hagrid
+    Hagrid: Hello ''' + first_name + ''' sorcere! My name is Hagrid
             I’m here to help you with your back to school at Hogwarts
             shopping on DiagonAlley.
 
             '''
     print(hagrid)
     print()
-    choice = ask_choice("Do you want to follow Hagrid ? ",["Yes, the beginning of a wonderful adventure",
-                                                                            "you are petrified with fear 😵"])
+    choice = ask_choice("Do you want to follow Hagrid ? ", ["Yes, the beginning of a wonderful adventure",
+                                                            "you are petrified with fear 😵"])
     if choice == 1:
         print('follow me little man ! ')
     else:
@@ -151,11 +148,6 @@ def meet_hagrid():
     print()
 
 
-
-
-
-
-
 def buy_supplies(character):
     """
     Manages the purchase of supplies on Diagon Alley.
@@ -163,8 +155,7 @@ def buy_supplies(character):
     """
     # Dictionnaire fourni dans ta consigne (normalement chargé via load_file)
 
-    #test = load_file("data/inventory")
-
+    # test = load_file("data/inventory")
 
     inventory_data = {
         "1": ["Magic Wand", 35],
@@ -278,16 +269,14 @@ def buy_supplies(character):
                 print("You can't afford any pet! Game Over.")
                 exit()
 
-    print("\nAll required items have been successfully purchased! Here is your final inventory:")  # [cite: 485]
+    print("All required items have been successfully purchased! Here is your final inventory:")  # [cite: 485]
 
     # Affichage final du personnage via la fonction demandée [cite: 253, 441]
     # display_character(character)
     # (J'ai commenté l'appel car je ne sais pas si tu as déjà importé cette fonction, mais c'est requis)
 
 
-
 def start_chapter_1():
-
     global player_tab
 
     introduction()
@@ -302,5 +291,3 @@ def start_chapter_1():
     input("[ Press ENTER to continue to Chapter 2 ]")
 
     return player_tab
-
-start_chapter_1()

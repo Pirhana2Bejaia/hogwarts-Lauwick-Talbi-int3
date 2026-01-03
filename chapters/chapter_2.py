@@ -1,3 +1,4 @@
+from chapters.chapter_1 import start_chapter_1
 from utils.input_utils import ask_choice
 from universe.house import assign_house
 from utils.input_utils import load_file
@@ -52,15 +53,15 @@ def meet_friends(character):
     a=ask_choice("How do you respond?",[" Shake his hand politely.", " Ignore him completely.", " Respond with arrogance."])
     print("Your choice :", a)
     if a == 1:
-        character["Attributes"][ambition] += 1
+        character["Attributes"]["Ambition"] += 1
         print("Drago smiles: "
               "- Happy to get you as a new friend")
     if a == 2:
-        character["Attributes"][loyalty] += 1
+        character["Attributes"]["Loyalty"] += 1
         print("Draco frowns, annoyed. "
               "— You'll regret that!")
     if a == 3:
-        character["Attributes"][courage] += 1
+        character["Attributes"]["Courage"] += 1
         print("Drago frowns, annoyed. "
               "- You think your intelligent POTTER")
     print("""
@@ -120,6 +121,46 @@ def enter_common_room(character):
 
 
 def start_chapter_2(character):
+    print("=" * 40)
+    print(" CHAPTER 2: THE HOGWARTS EXPRESS ")
+    print("=" * 40)
+    print("""
+    You arrive at King's Cross Station in London.
+    You push your trolley, looking for Platform 9 3/4.
+    But you only see platforms 9 and 10...
+        """)
+
+    input("[Press Enter to look around]")
+
+    print("""
+    Suddenly, you hear a woman's voice:
+    'Packed with Muggles, of course! Come on, Percy, you go first.'
+    You see a family with flaming red hair.
+        """)
+    choice = ask_choice("What do you do?", ["Ask for help", "Watch them silently"])
+
+    if choice == 1:
+        print("""
+    You approach the woman. She smiles kindly at you.
+    'First time at Hogwarts? Ron is new too.'
+    She points at a brick wall between platforms 9 and 10.
+    'All you have to do is walk straight at the barrier.'
+    'Don't stop and don't be scared you'll crash into it.'
+            """)
+    else:
+        print("""
+    You watch a boy run straight at the solid brick wall...
+    And he vanishes right through it!
+    You take a deep breath, close your eyes, and run.
+            """)
+
+    print("""
+    ...
+    You open your eyes. A scarlet steam engine is waiting for you.
+    Welcome to Platform 9 3/4!
+        """)
+
+    input("[Press Enter to board the train]")
     meet_friends(character)
     welcome_message()
     sorting_ceremony(character)
@@ -129,6 +170,4 @@ def start_chapter_2(character):
     print("End of Chapter 2! Your adventure begins at Hogwarts...")
     print("Classes are about to start.")
     input("[Press Enter to continue]")
-    return house , character
-    
-    
+    return character
