@@ -16,12 +16,13 @@ def launch_menu_choice():
     }
     while True:
         display_main_menu()
-        choice = ask_choice("Main Menu", ["Start Adventure", "Exit the game"])
+        choice = ask_choice("An opportunity for adventure lies before you. Seize it and live the adventure, or stay where you are and live the same life every day.", ["Start Adventure", "Exit the game"])
         if choice == 1:
             character = start_chapter_1()
             character = start_chapter_2(character)
             character = start_chapter_3(character,houses)
             character = start_chapter_4_quidditch(character, houses)
+            break
         elif choice == 2:
             print("Goodbye, young wizard!")
             break

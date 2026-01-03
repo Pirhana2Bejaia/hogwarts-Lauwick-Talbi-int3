@@ -121,6 +121,46 @@ def enter_common_room(character):
 
 
 def start_chapter_2(character):
+    print("=" * 40)
+    print(" CHAPTER 2: THE HOGWARTS EXPRESS ")
+    print("=" * 40)
+    print("""
+    You arrive at King's Cross Station in London.
+    You push your trolley, looking for Platform 9 3/4.
+    But you only see platforms 9 and 10...
+        """)
+
+    input("[Press Enter to look around]")
+
+    print("""
+    Suddenly, you hear a woman's voice:
+    'Packed with Muggles, of course! Come on, Percy, you go first.'
+    You see a family with flaming red hair.
+        """)
+    choice = ask_choice("What do you do?", ["Ask for help", "Watch them silently"])
+
+    if choice == 1:
+        print("""
+    You approach the woman. She smiles kindly at you.
+    'First time at Hogwarts? Ron is new too.'
+    She points at a brick wall between platforms 9 and 10.
+    'All you have to do is walk straight at the barrier.'
+    'Don't stop and don't be scared you'll crash into it.'
+            """)
+    else:
+        print("""
+    You watch a boy run straight at the solid brick wall...
+    And he vanishes right through it!
+    You take a deep breath, close your eyes, and run.
+            """)
+
+    print("""
+    ...
+    You open your eyes. A scarlet steam engine is waiting for you.
+    Welcome to Platform 9 3/4!
+        """)
+
+    input("[Press Enter to board the train]")
     meet_friends(character)
     welcome_message()
     sorting_ceremony(character)

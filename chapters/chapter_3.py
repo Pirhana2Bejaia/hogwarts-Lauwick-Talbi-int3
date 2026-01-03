@@ -1,90 +1,103 @@
 import random
-# On garde uniquement les imports utiles
 from utils.input_utils import load_file, ask_text
 from universe.character import add_item, display_character
 from universe.house import update_house_points, display_winning_house
 
 
-# Note sur le chemin : Si tu lances le jeu depuis main.py, le chemin est "data/spells.json".
-# Si tu lances ce fichier seul pour tester, c'est "../data/spells.json".
-# Par défaut, on met le chemin relatif à main.py.
-
 def learn_spells(character, file_path="data/spells.json"):
-    """
-    Permet au personnage d'apprendre 5 sorts (1 Offensif, 1 Défensif, 3 Utilitaires).
-    [cite: 657-662]
-    """
-    print("\nYou begin your magic lessons at Hogwarts...")  # [cite: 669]
+    print("=" * 40)
+    print(" CHAPTER 3: MAGIC CLASSES ")
+    print("=" * 40)
 
-    # 1. Chargement des sorts
-    # Si le fichier n'est pas trouvé, assure-toi que le dossier data est bien à la racine
+    print("""
+You enter the Charms classroom. Small piles of books are stacked on the desks.
+Professor Flitwick is standing on a pile of books to see the class.
+
+'Welcome, young wizards! Today, we will learn new spells.'
+'Remember: Swish and flick!'
+    """)
+    input("[Press Enter to start the lesson]")
+
     try:
         all_spells = load_file(file_path)
     except FileNotFoundError:
-        print(f"Error: File {file_path} not found. Check your path.")
+        print("Error: File " + file_path + " not found.")
         return
 
-    # 2. Séparation des sorts par catégorie
+    # Séparation des sorts
     offensive_spells = [s for s in all_spells if s['type'] == 'Offensive']
     defensive_spells = [s for s in all_spells if s['type'] == 'Defensive']
     utility_spells = [s for s in all_spells if s['type'] == 'Utility']
 
-    # 3. Sélection aléatoire
     spells_to_learn = []
-
-    # Choix 1 Offensif et 1 Défensif
-    # On vérifie que les listes ne sont pas vides pour éviter un crash
     if offensive_spells:
         spells_to_learn.append(random.choice(offensive_spells))
     if defensive_spells:
         spells_to_learn.append(random.choice(defensive_spells))
 
-    # Choix 3 Utilitaires
-    # Astuce : random.choices (avec s) peut prendre des doublons,
-    # mais pour apprendre 3 sorts différents, on peut vérifier la taille de la liste.
-    if len(utility_spells) >= 3:
-        # On essaie d'éviter les doublons si possible, sinon random.choice dans une boucle comme tu as fait
-        for _ in range(3):
-            spells_to_learn.append(random.choice(utility_spells))
-    else:
-        spells_to_learn.extend(utility_spells)  # On prend tout ce qu'il y a si moins de 3
+    nb_utilitaires = 0
+    max_util = min(3, len(utility_spells))
+    while nb_utilitaires < max_util:
+        sort = random.choice(utility_spells)
+        if sort not in spells_to_learn:
+            spells_to_learn.append(sort)
+            nb_utilitaires = nb_utilitaires + 1
 
-    # 4. Apprentissage
     learned_spells_list = []
 
     for spell in spells_to_learn:
-        # Ajout au personnage
+        print("Professor Flitwick demonstrates the spell: " + spell['name'])
+        print("Description: " + spell['description'])
+
+        success = False
+        while not success:
+            user_try = ask_text("Type the incantation to cast it: ")
+
+            if user_try.lower().strip() == spell['name'].lower().strip():
+                print("✨ You wave your wand perfectly! " + spell['name'] + "!")
+                success = True
+            else:
+                print("☁️ Nothing happens. Flitwick says: 'Watch your pronunciation! Try again.'")
+
         add_item(character, 'Spells', spell['name'])
         learned_spells_list.append(spell)
 
-        print(f"You have just learned the spell: {spell['name']} ({spell['type']})")  # [cite: 670]
-        input("[Press Enter to continue...]")
-
-    # 5. Résumé
-    print("\nYou have completed your basic spell training at Hogwarts!")
-    print("Here are the spells you now master:")
-    for spell in learned_spells_list:
-        print(f"- {spell['name']} ({spell['type']}): {spell['description']}")
+    print("\n'Excellent work!' squeaks Professor Flitwick.")
+    print("You have mastered 5 new spells.")
 
 
 def magic_quiz(character, file_path="data/magic_quiz.json"):
-    """
-    Lance un quiz interactif de 4 questions.
-    [cite: 680-684]
-    """
-    print("\nWelcome to the Hogwarts magic quiz!")  # [cite: 688]
-    print("Answer the 4 questions correctly to earn points for your house.")
+
+    print( "=" * 30)
+    print(" THEORETICAL EXAM ")
+    print("=" * 30)
+
+    print("""
+Later that day, you have a written exam on Magical Theory.
+You sit down in the Great Hall. Hermione is whispering answers to herself nearby.
+You decide to quickly read your notes one last time before the test begins.
+    """)
+    input("[Press Enter to revise your notes]")
 
     try:
         all_questions = load_file(file_path)
     except FileNotFoundError:
-        print(f"Error: File {file_path} not found.")
+        print("Error: File " + file_path + " not found.")
         return 0
+
+    print("--- YOUR STUDY NOTES ---")
+    # On en affiche quelques-unes au hasard pour simuler les révisions,
+    # ou toutes si on veut être gentil (ici on affiche tout pour aider le joueur)
+    for q in all_questions:
+        print("* Remember: " + q['answer'] + " is the answer to '" + q['question'] + "'")
+    print("------------------------\n")
+
+    print("Professor McGonagall takes away your notes.")
+    print("'The exam begins now. No cheating!'")
+    input("[Press Enter to start the Quiz]")
 
     score = 0
     questions_asked = []
-
-    # On pose 4 questions maximum (ou moins si le fichier est petit)
     max_questions = min(4, len(all_questions))
 
     while len(questions_asked) < max_questions:
@@ -94,60 +107,38 @@ def magic_quiz(character, file_path="data/magic_quiz.json"):
             continue
 
         questions_asked.append(question)
-        print(f"\n{len(questions_asked)}. {question['question']}")
+        print("Question " + str(len(questions_asked)) + ":")
+        print(question['question'])
 
         user_answer = ask_text("> ")
 
-        # Comparaison insensible à la casse [cite: 81]
         if user_answer.strip().lower() == question['answer'].strip().lower():
-            print("Correct answer! +25 points for your house.")
-            score += 25
+            print("Correct! (+25 points)")
+            score = score + 25
         else:
-            print(f"Wrong answer. The correct answer was: {question['answer']}")
+            print("Wrong. The correct answer was: " + question['answer'])
 
-    print(f"\nScore obtained: {score} points")
+    print("\nExam finished. You scored: " + str(score) + " points.")
     return score
 
 
 def start_chapter_3(character, houses):
-    """
-    Orchestre le Chapitre 3.
-    [cite: 705]
-    """
-    # 1. Apprentissage des sorts
+
     learn_spells(character)
 
-    # 2. Quiz
     points_earned = magic_quiz(character)
 
-    # 3. Mise à jour des points
-    # On sécurise au cas où "House" n'est pas défini (test)
     house_name = character.get("House", "Gryffindor")
 
     if points_earned > 0:
         update_house_points(houses, house_name, points_earned)
 
-    # 4. Affichage maison gagnante
     display_winning_house(houses)
 
-    # 5. Affichage perso
+    from universe.character import display_character
     display_character(character)
 
-    print("\nEnd of Chapter 3! You are now ready for greater challenges...")
+    print("End of Chapter 3! You are now ready for the Quidditch match...")
     input("[Press Enter to continue]")
 
-    return character  # Bonne pratique de retourner le perso
-
-
-# PROTECTION INDISPENSABLE
-if __name__ == "__main__":
-    # Ce bloc sert UNIQUEMENT si tu testes ce fichier tout seul
-    # Il ne s'exécutera pas quand le fichier sera importé par menu.py
-
-    # Données fictives pour le test
-    mock_character = {"Last Name": "Potter", "First Name": "Harry", "Money": 100, "Spells": [], "Inventory": [],
-                      "Attributes": {}, "House": "Gryffindor"}
-    mock_houses = {"Gryffindor": 0, "Slytherin": 0, "Hufflepuff": 0, "Ravenclaw": 0}
-
-    # Attention aux chemins pour le test local : il faudra peut-être "../data/..." ici
-    start_chapter_3(mock_character, mock_houses)
+    return character

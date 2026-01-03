@@ -120,7 +120,7 @@ def receive_letter():
         print()
         print("The magical world will never know you existed... Game over.")
 
-        return exit()
+        exit()
 
     return ''
 
@@ -278,7 +278,7 @@ def buy_supplies(character):
                 print("You can't afford any pet! Game Over.")
                 exit()
 
-    print("\nAll required items have been successfully purchased! Here is your final inventory:")  # [cite: 485]
+    print("All required items have been successfully purchased! Here is your final inventory:")  # [cite: 485]
 
     # Affichage final du personnage via la fonction demandée [cite: 253, 441]
     # display_character(character)
