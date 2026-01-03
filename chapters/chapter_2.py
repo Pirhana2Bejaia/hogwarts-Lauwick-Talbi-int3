@@ -171,3 +171,4 @@ def start_chapter_2(character):
     print("Classes are about to start.")
     input("[Press Enter to continue]")
     return character
+
