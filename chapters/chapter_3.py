@@ -14,7 +14,7 @@ You enter the Charms classroom. Small piles of books are stacked on the desks.
 Professor Flitwick is standing on a pile of books to see the class.
 
 'Welcome, young wizards! Today, we will learn new spells.'
-'Remember: Swish and flick! (Incarcerous)'
+'Remember: Swish and flick!'
     """)
     input("[Press Enter to start the lesson]")
 
