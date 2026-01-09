@@ -45,12 +45,6 @@ def display_winning_house(houses):
         print("The winner is", house_winning, "with a number of ", max_points, "points.")
     return
 def assign_house(character, questions):
-    """
-    The function assign houses by the answer of the questions
-    :param character: dict
-    :param questions: list of tuple
-    :return:
-    """
     houses = {"Gryffindor": 0,
             "Slytherin": 0,
             "Hufflepuff": 0,

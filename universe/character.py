@@ -15,9 +15,9 @@ def display_character(character):
     for i in character:
         temporary = i
 
-        if isinstance(character[i], dict): #Vérifie le type de la valeur, si c'est un dictionnaire alors on
+        if isinstance(character[i], dict):
 
-            for j in character[i]:         # on affiche chaque element du dictionnaire
+            for j in character[i]:
                 print('-',j,' : ',character[i][j])
 
         elif isinstance(character[i], list):
@@ -32,7 +32,7 @@ def display_character(character):
             print(i,':', character[i])
         print()
     return ''
-# dans la ligne au dessus je renvoie une chaine de caractere vide pour evider de renvoyer NON
+
 
 def modify_money(character, amount):
     character["Money"] += amount

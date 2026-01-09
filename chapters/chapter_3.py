@@ -86,8 +86,6 @@ You decide to quickly read your notes one last time before the test begins.
         return 0
 
     print("--- YOUR STUDY NOTES ---")
-    # On en affiche quelques-unes au hasard pour simuler les révisions,
-    # ou toutes si on veut être gentil (ici on affiche tout pour aider le joueur)
     for q in all_questions:
         print("* Remember: " + q['answer'] + " is the answer to '" + q['question'] + "'")
     print("------------------------\n")

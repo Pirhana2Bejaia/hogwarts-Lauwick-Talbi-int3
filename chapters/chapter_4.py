@@ -252,7 +252,6 @@ Wins grant 3 points. Draws grant 1 point.
     print("...")
     input("[Press Enter for the result]")
 
-    # Appel de la fonction de fin
     display_winning_house(houses)
 
     print("""

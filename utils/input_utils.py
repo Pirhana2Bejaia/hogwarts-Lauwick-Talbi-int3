@@ -1,8 +1,3 @@
-'''
-la première condition vérifie que l'input n'est pas vide
-si elle n'est pas vide:
-on vérifie que le message ne contient pas que des espaces blancs
-'''
 
 def load_file(file_path):
     import json
