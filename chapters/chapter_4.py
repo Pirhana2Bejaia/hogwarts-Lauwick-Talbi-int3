@@ -66,7 +66,7 @@ def display_team(team):
 
 def play_one_match(character, opponent_house, teams_data):
 
-    player_house = character.get("House", "Gryffindor")
+    player_house = character["House"]
 
     print( "=" * 30)
     print(" MATCH: " + player_house.upper() + " VS " + opponent_house.upper())
@@ -150,7 +150,7 @@ Wins grant 3 points. Draws grant 1 point.
     teams_data = load_file("data/teams_quidditch.json")
 
 
-    player_house = character.get("House", "Gryffindor")
+    player_house = character["House"]
 
     league_table = {
         "Gryffindor": 0, "Slytherin": 0, "Hufflepuff": 0, "Ravenclaw": 0

@@ -34,7 +34,7 @@ Professor Flitwick is standing on a pile of books to see the class.
 
     nb_utilitaires = 0
 
-    max_util = min(3, len(utility_spells))
+    max_util = 3
 
     while nb_utilitaires < max_util:
         sort = random.choice(utility_spells)
@@ -94,7 +94,7 @@ You decide to quickly read your notes one last time before the test begins.
 
     score = 0
     questions_asked = []
-    max_questions = min(4, len(all_questions))
+    max_questions = 4
 
     while len(questions_asked) < max_questions:
         question = random.choice(all_questions)

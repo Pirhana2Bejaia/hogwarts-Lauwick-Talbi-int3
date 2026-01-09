@@ -113,8 +113,8 @@ def enter_common_room(character):
         print(f"Error: House '{house_name}' not found in database.")
         return
     print("You follow the prefects through the castle corridors...")
-    print(f"{house_info['description']}")
-    print(f"{house_info['installation_message']}")
+    print({house_info['description']})
+    print({house_info['installation_message']})
     colors_string = ", ".join(house_info['colors'])
     print(f"Your house colors: {colors_string}")
     input("[Press Enter to settle into your new dormitory]")
