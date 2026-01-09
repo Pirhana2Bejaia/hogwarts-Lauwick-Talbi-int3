@@ -8,7 +8,7 @@ def learn_spells(character, file_path="data/spells.json"):
     print("=" * 40)
     print(" CHAPTER 3: MAGIC CLASSES ")
     print("=" * 40)
-#.
+
     print(""" 
 You enter the Charms classroom. Small piles of books are stacked on the desks.
 Professor Flitwick is standing on a pile of books to see the class.
@@ -18,13 +18,10 @@ Professor Flitwick is standing on a pile of books to see the class.
     """)
     input("[Press Enter to start the lesson]")
 
-    try:
-        all_spells = load_file(file_path)
-    except FileNotFoundError:
-        print("Error: File " + file_path + " not found.")
-        return
 
-    # Séparation des sorts
+    all_spells = load_file(file_path)
+
+
     offensive_spells = [s for s in all_spells if s['type'] == 'Offensive']
     defensive_spells = [s for s in all_spells if s['type'] == 'Defensive']
     utility_spells = [s for s in all_spells if s['type'] == 'Utility']
@@ -36,7 +33,9 @@ Professor Flitwick is standing on a pile of books to see the class.
         spells_to_learn.append(random.choice(defensive_spells))
 
     nb_utilitaires = 0
+
     max_util = min(3, len(utility_spells))
+
     while nb_utilitaires < max_util:
         sort = random.choice(utility_spells)
         if sort not in spells_to_learn:
@@ -79,11 +78,10 @@ You decide to quickly read your notes one last time before the test begins.
     """)
     input("[Press Enter to revise your notes]")
 
-    try:
-        all_questions = load_file(file_path)
-    except FileNotFoundError:
-        print("Error: File " + file_path + " not found.")
-        return 0
+
+    all_questions = load_file(file_path)
+
+
 
     print("--- YOUR STUDY NOTES ---")
     for q in all_questions:

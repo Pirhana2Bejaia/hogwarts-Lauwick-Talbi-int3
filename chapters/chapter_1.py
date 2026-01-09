@@ -192,10 +192,10 @@ def buy_supplies(character):
         name = selected_item[0]
         price = selected_item[1]
 
-        # Vérification du budget
+
         if current_money >= price:
-            # Achat validé
-            modify_money(character, -price)  #
+
+            modify_money(character, -price)
             add_item(character, 'Inventory', name)
             print("You bought: " + name + " (-" + str(price) + " Galleons).")
 
@@ -244,7 +244,7 @@ def buy_supplies(character):
                 print("You can't afford any pet! Game Over.")
                 exit()
 
-    print("All required items have been successfully purchased! Here is your final inventory:")  #
+    print("All required items have been successfully purchased! Here is your final inventory:")
 
 
 def start_chapter_1():

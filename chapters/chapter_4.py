@@ -147,11 +147,8 @@ Wins grant 3 points. Draws grant 1 point.
     """)
     input("[Press Enter to see the schedule]")
 
-    try:
-        teams_data = load_file("data/teams_quidditch.json")
-    except FileNotFoundError:
-        print("Error: data/teams_quidditch.json not found.")
-        return
+    teams_data = load_file("data/teams_quidditch.json")
+
 
     player_house = character.get("House", "Gryffindor")
 
